@@ -1,0 +1,18 @@
+- name: Ensure Apache packages are installed
+  apt: name={{item}} state=latest
+  with_items: apache_packages
+
+- name: Enable Apache modules
+  apache2_module: name={{item}}
+  with_items: apache_modules_enabled
+
+- name: Disable Apache modules
+  apache2_module: name={{item}} state=absent
+  with_items: apache_modules_disabled
+
+- name: Delete default files
+  file: path={{apache_www_dir}}/{{item}} state=absent
+  with_items: default_files
+
+- name: Override default apache site
+  template: src=000-default.conf.j2 dest={{apache_conf_path}}/sites-available/000-default.conf
