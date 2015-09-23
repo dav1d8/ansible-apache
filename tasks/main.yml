@@ -1,5 +1,5 @@
 - name: Ensure Apache packages are installed
-  apt: name={{item}} state=latest update_cache=yes
+  apt: name={{item}} state=latest
   with_items: apache_packages
 
 - name: Enable Apache modules
