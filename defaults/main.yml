@@ -1,5 +1,6 @@
 apache_packages:
   - apache2
+  - python-passlib #need for generate htpasswd via ansible
 
 apache_www_dir: /var/www
 apache_conf_path: /etc/apache2
